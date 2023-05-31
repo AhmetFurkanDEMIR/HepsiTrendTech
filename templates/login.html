@@ -8,22 +8,11 @@
 <hr>
 <div class="row">
     <div class="col-md-6 offset-md-3">
-        
-        <form method = "post">
+        <form method="post">
             {% csrf_token %}
-            
             {{form|crispy }}
-            
             <button type="submit" class="btn btn-primary">Giriş Yap</button>
         </form>
-
     </div>
-  </div>
-
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+</div>
 {% endblock body %}
