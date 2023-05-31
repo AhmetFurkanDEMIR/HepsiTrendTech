@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<br></br>
+
+
+<div class="container" align="center">
+
+  <br></br>
+
+  <form method="POST" enctype="multipart/form-data">
+    
+    {% csrf_token %}
+
+     <img src="/static/img/logo.png" class="responsive"> 
+     <br></br>
+
+<div class="mb-3 w-90 float-container">
+
+<div class="file-upload float-child">
+
+<div class="file-select" style="border-radius: 20px 10px;">
+  <div class="file-select-button" id="fileName" capture="camera">Fotoğraf Seç/Yükle</div>
+  <div class="file-select-name" id="noFile">Hayalindeki ürünü ara</div> 
+  <input type="file" name="chooseFile" id="chooseFile">
+</div>
+
+
+</div>
+
+<div class="float-child-a">
+
+
+<button type="submit" class="btn btn-secondary" style="border-radius: 20px 10px;"><i
+        class="fa-solid fa-magnifying-glass"></i></button>
+
+</div>
+</div>
+<br></br>
+  &nbsp;&nbsp;&nbsp;
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" value="Erkek" name="flexRadioDefault" id="flexRadioDefault1" checked>
+      <label class="form-check-label" for="flexRadioDefault1" style="color: #34495e;">
+       <i class="fa-solid fa-person fa-xl"></i> <br> Erkek
+      </label>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" value="Kadın" name="flexRadioDefault" id="flexRadioDefault2">
+      <label class="form-check-label" for="flexRadioDefault2" style="color: #34495e;">
+        <i class="fa-solid fa-person-dress fa-xl"></i> <br> Kadın
+      </label>
+    </div>
+
+    
+    
+
+  </form>
+
+</div>
+
+
+<br></br>
+<br></br>
+
+<style>
+
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    padding: 125px;
+    height: 300px;
+    /* Should be removed. Only for demonstration */
+  }
+
+  .ml2 {
+    font-weight: 900;
+    font-size: 1.15em;
+  }
+
+  .ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+  }
+
+  .custom-file-button input[type="file"] {
+ margin-left: -2px !important;
+}
+.custom-file-button input[type="file"]::-webkit-file-upload-button {
+ display: none;
+}
+.custom-file-button input[type="file"]::file-selector-button {
+ display: none;
+}
+.custom-file-button:hover label {
+ background-color: #dde0e3;
+ cursor: pointer;
+}
+
+
+/****** CODE ******/
+
+.file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
+.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload .file-select:hover{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select:hover .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select{border-color:#34495e;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select .file-select-button{background:#34495e;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
+.file-upload .file-select.file-select-disabled{opacity:0.65;}
+.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+
+.float-container {
+
+}
+
+.float-child {
+  width: 91%;
+  float: left;
+}  
+.float-child-a {
+
+  width: 9%;
+  float: right;
+}  
+
+.responsive {
+width: 30%;
+height: auto;
+}
+
+
+</style>
+
+<script>
+  $('#chooseFile').bind('change', function () {
+    var filename = $("#chooseFile").val();
+    if (/^\s*$/.test(filename)) {
+      $(".file-upload").removeClass('active');
+      $("#noFile").text("No file chosen..."); 
+    }
+    else {
+      $(".file-upload").addClass('active');
+      $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+    }
+  });
+  </script>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+{% endblock body %}

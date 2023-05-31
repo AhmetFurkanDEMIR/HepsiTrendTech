@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+
+  web-site:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+
+    restart: on-failure
